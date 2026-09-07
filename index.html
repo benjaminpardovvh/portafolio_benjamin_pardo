@@ -4,53 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Benjamin Pardo">
     <title>Portafolio</title>
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body>
     <header class="header">
-        <h1>Portafolio</h1>
-        <nav class="nav">
-            <a href="#">Inicio</a>
-            <a href="#quien-soy">¿Quien soy?</a>
-            <a href="#habilidades">Habilidades</a>
-            <button class="botonMusica">Silenciar musica</button>
-            <button>ENG</button>
-        </nav>
+        <div class="header-contenido">
+            <h1>PORTAFOLIO</h1>
+            <nav class="nav">
+                <a href="#">Inicio</a>
+                <a href="#quien-soy">¿Quién soy?</a>
+                <a href="#habilidades">Habilidades</a>
+                <div class="botones">
+                    <button class="botonMusica">Silenciar</button>
+                    <a href="pages/index-eng.html" class="btn-lang">ENG</a>
+                </div>
+            </nav>
+        </div>
     </header>
     <main class="main">
         <section class="seccion" id="quien-soy">
-            <h1>Hola, soy Benjamin, pero me dicen Tommy</h1>
-            <p>Soy un chico que le encantan los videojuegos y la programación, aunque caiga en ira porque el css o el
-                js no agarre y me demore horas solo para descubrir que estaban mal escritos jejeje...</p>
-            <p>ODIO CSS POR MI QUE BORREN ESA MADRE</p>
+            <h2>Hola, soy Benjamin, pero me dicen Tommy</h2>
+            <div class="caja-texto">
+                <p>Soy un chico al que le encantan los videojuegos y la programación, aunque caiga en ira porque el CSS
+                    o el JS no agarran y me demore horas solo para descubrir que estaban mal escritos jejeje...</p>
+                <p class="broma-css">ODIO CSS, POR MI QUE BORREN ESA MADRE.</p>
+            </div>
         </section>
         <section class="seccion" id="habilidades">
-            <h2>Habilidades:</h2>
-            <p>estas son mis habilidades en forma de stats</p>
-            <div class="stats">
-                <aside class="barraIzquierda">
-                    <div class="barra html"></div>
-                    <div class="barra css"></div>
-                    <div class="barra js"></div>
-                </aside>
-                <aside class="barraDerecha">
-                    <div class="barra bootstrap"></div>
-                    <div class="barra mySql"></div>
-                    <div class="barra phyton"></div>
-                </aside>
-                <p>(phyton muy pero muy basico y un poquito mas en rempy)</p>
+            <h2>Mis Stats de Habilidades</h2>
+            <div class="stats-contenedor">
+                <div class="stats-grid">
+                    <div class="columna-stats">
+                        <div class="stat-item">
+                            <p>HTML <span>79%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-html" data-porcentaje="79%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <p>CSS <span>39%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-css" data-porcentaje="39%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <p>JavaScript <span>83%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-js" data-porcentaje="83%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columna-stats">
+                        <div class="stat-item">
+                            <p>Bootstrap <span>50%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-bootstrap" data-porcentaje="50%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <p>MySQL <span>43%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-mysql" data-porcentaje="43%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <p>Python <span>15%</span></p>
+                            <div class="barra">
+                                <div class="relleno relleno-python" data-porcentaje="15%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="nota-pie">(Python muy básico y un poquito más en Ren'Py)</p>
             </div>
         </section>
     </main>
-    <footer>
-        <p>¿ganas de mas?</p>
-        <div class="tiendas"></div>
+    <footer class="footer">
+        <div class="footer-contenido">
+            <h3>MIS REDES</h3>
+            <div class="redes">
+                <a href="#" target="_blank">YouTube</a>
+                <a href="#" target="_blank">GitHub</a>
+            </div>
+            <p class="correo">Contacto: benjminpardo@liceovvh.cl</p>
+        </div>
     </footer>
-    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
     <audio id="greenRoom" src="static/assets/audio/greenroom_detune.ogg" loop></audio>
     <script src="static/js/script.js"></script>
+    <audio id="sndMove" src="static/assets/audio/snd_movemenu.wav" preload="auto"></audio>
+    <audio id="sndSelect" src="static/assets/audio/snd_select.wav" preload="auto"></audio>
 </body>
 
 </html>

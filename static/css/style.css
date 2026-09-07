@@ -2,4 +2,223 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    /* Evita el suavizado moderno para mantener el look pixel */
+    image-rendering: pixelated; 
+}
+
+:root {
+    --bg-darkroom: #000a06;      /* El negro puro con matiz verde del fondo */
+    --green-deep: #143228;       /* Paredes de la Green Room */
+    --green-room: #38705e;       /* Marcos y estructuras */
+    --green-bright: #4dcc8e;     /* Interfaz / Bordes de cajas */
+    --green-neon: #04fb0c;       /* Texto seleccionado / Luces */
+    --text-light: #ffffff;       /* El blanco puro de los diálogos del juego */
+}
+
+/* El fondo del juego siempre es oscuro y plano */
+body {
+    background-color: var(--bg-darkroom);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- HEADER ESTILO MENÚ RPG --- */
+.header {
+    background-color: #000000;
+    border: 4px solid var(--text-light); 
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.header-contenido {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    color: var(--green-neon);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* El clásico cursor de selección de Deltarune simulado al pasar el mouse */
+.nav a:hover {
+    color: var(--green-neon);
+}
+.nav a:hover::before {
+    content: "* ";
+    color: var(--green-neon);
+}
+
+.botones {
+    display: flex;
+    gap: 15px;
+}
+
+/* Botones estilo UI de batalla (FIGHT/ACT/ITEM) */
+button, .btn-lang {
+    background-color: #000000;
+    color: var(--green-bright);
+    border: 3px solid var(--green-room);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+button:hover, .btn-lang:hover {
+    color: var(--text-light);
+    border-color: var(--text-light);
+    background-color: var(--green-deep);
+}
+
+/* --- SECCIONES PRINCIPALES (CAJAS DE DIÁLOGO) --- */
+.main {
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.seccion {
+    background-color: #000000;
+    /* Caja de texto estándar con borde blanco o verde */
+    border: 4px solid var(--green-bright); 
+    padding: 25px;
+}
+
+.seccion h2 {
+    color: var(--green-neon);
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+/* Añade el asterisco clásico de los diálogos antes de cada párrafo */
+.caja-texto p::before {
+    content: "* ";
+    color: var(--text-light);
+}
+
+.caja-texto p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.broma-css {
+    color: #ff3333 !important;
+    font-weight: bold;
+}
+
+/* --- STATS / BARRAS DE PROGRESO RPG --- */
+.stats-contenedor {
+    width: 100%;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.columna-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+/* Las barras del juego son planas, sin sombras ni curvas */
+.barra {
+    width: 100%;
+    height: 18px;
+    background-color: #222222; /* Fondo de la barra vacía */
+    border: 2px solid var(--green-room);
+    overflow: hidden;
+}
+
+.relleno {
+    height: 100%;
+    width: 0%; /* Animado por JS */
+    /* Transición instantánea o rápida para dar sensación retro */
+    transition: width 0.8s steps(10); 
+}
+
+/* Colores sólidos y llamativos para las estadísticas */
+.relleno-html { background-color: #e44d26; }
+.relleno-css { background-color: #264de4; }
+.relleno-js { background-color: #f7df1e; }
+.relleno-bootstrap { background-color: #563d7c; }
+.relleno-mysql { background-color: #00758f; }
+
+/* El degradado de Python adaptado al estilo de pixeles */
+.relleno-python { 
+    background: linear-gradient(90deg, #3776ab 50%, #ffd43b 50%);
+    background-size: 20px 100%; /* Rompe el degradado suave para que parezca pixelado */
+}
+
+.nota-pie {
+    font-size: 0.9rem;
+    color: var(--green-room);
+    margin-top: 15px;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: #000000;
+    border: 4px solid var(--text-light);
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer h3 {
+    color: var(--green-neon);
+    margin-bottom: 10px;
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+.redes a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.redes a:hover {
+    color: var(--green-bright);
+    text-decoration: underline;
 }
