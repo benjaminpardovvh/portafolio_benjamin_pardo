@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Animación de las barras de estadísticas estilo RPG
     const rellenos = document.querySelectorAll('.relleno');
     setTimeout(() => {
         rellenos.forEach(barra => {
@@ -6,11 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
             barra.style.width = porcentaje;
         });
     }, 300);
+
+    // Audio ambiental
     const audio = document.getElementById('greenRoom');
     const botonMusica = document.querySelector('.botonMusica');
     if (audio) {
         audio.muted = true;
-        audio.play().catch(error => console.log("Autoplay has iniciated in silence by the navegator rules."));
+        audio.play().catch(error => console.log("Autoplay iniciado en silencio según políticas del navegador."));
         if (botonMusica) {
             botonMusica.textContent = "Play";
             botonMusica.addEventListener('click', () => {
@@ -24,14 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+    // Efectos de sonido del juego al interactuar
     const sndMove = document.getElementById('sndMove');
     const sndSelect = document.getElementById('sndSelect');
-    const elementosInteractivos = document.querySelectorAll('.nav a, button, .btn-lang, .redes a');
+    
+    // Se agregan los enlaces de proyectos a la interactividad
+    const elementosInteractivos = document.querySelectorAll('.nav a, button, .btn-lang, .redes a, .contenido-proyectos a');
+    
     elementosInteractivos.forEach(elemento => {
         elemento.addEventListener('mouseenter', () => {
             if (sndMove) {
                 sndMove.currentTime = 0;
-                sndMove.play().catch(e => console.log("Audio de interfaz silenciado por el navegador."));
+                sndMove.play().catch(e => console.log("Audio silenciado por navegador."));
             }
         });
         elemento.addEventListener('click', (e) => {

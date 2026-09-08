@@ -3,33 +3,55 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    /* Evita el suavizado moderno para mantener el look pixel */
-    image-rendering: pixelated; 
+    image-rendering: pixelated;
 }
+
 
 :root {
-    --bg-darkroom: #000a06;      /* El negro puro con matiz verde del fondo */
-    --green-deep: #143228;       /* Paredes de la Green Room */
-    --green-room: #38705e;       /* Marcos y estructuras */
-    --green-bright: #4dcc8e;     /* Interfaz / Bordes de cajas */
-    --green-neon: #04fb0c;       /* Texto seleccionado / Luces */
-    --text-light: #ffffff;       /* El blanco puro de los diálogos del juego */
+    --bg-green-light: #A0D588;
+    --bg-green-dark: #659591;
+    --tv-green: #00ff87;
+    --tv-cyan: #00f0ff;
+    --board-orange: #ff7722;
+    --red-carpet: #e60039;
+    --yellow-deltarune: #ffd700;
+    --text-light: #ffffff;
+    --card-bg: #091a18;
+    --glow-tv: 0 0 12px rgba(0, 240, 255, 0.6);
+    --glow-green: 0 0 12px rgba(0, 255, 135, 0.6);
+    --glow-orange: 0 0 10px rgba(255, 119, 34, 0.5);
 }
 
-/* El fondo del juego siempre es oscuro y plano */
+
 body {
-    background-color: var(--bg-darkroom);
+    background-color: var(--bg-green-light);
     color: var(--text-light);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding: 20px;
+    background-image:
+        linear-gradient(180deg, rgba(0, 240, 255, 0.08) 0%, rgba(0, 255, 135, 0.05) 50%, rgba(255, 119, 34, 0.1) 100%);
+    background-attachment: fixed;
+    animation: cambiarFondo 5s ease-in-out infinite alternate;
 }
 
-/* --- HEADER ESTILO MENÚ RPG --- */
+@keyframes cambiarFondo {
+    0% {
+        background-color: var(--bg-green-light);
+    }
+
+    100% {
+        background-color: var(--bg-green-dark);
+    }
+}
+
+
+/* --- HEADER --- */
 .header {
     background-color: #000000;
-    border: 4px solid var(--text-light); 
+    border: 4px solid var(--tv-cyan);
+    box-shadow: var(--glow-tv);
     padding: 15px;
     margin-bottom: 30px;
 }
@@ -41,12 +63,15 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 .header h1 {
-    color: var(--green-neon);
-    font-size: 2rem;
+    color: var(--board-orange);
+    font-size: 2.2rem;
     font-weight: bold;
+    text-shadow: 0 0 10px var(--board-orange);
+    letter-spacing: 2px;
 }
 
 .nav {
@@ -60,15 +85,17 @@ body {
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
+    transition: color 0.1s;
 }
 
-/* El clásico cursor de selección de Deltarune simulado al pasar el mouse */
 .nav a:hover {
-    color: var(--green-neon);
+    color: var(--yellow-deltarune);
+    text-shadow: 0 0 8px var(--yellow-deltarune);
 }
+
 .nav a:hover::before {
     content: "* ";
-    color: var(--green-neon);
+    color: var(--yellow-deltarune);
 }
 
 .botones {
@@ -76,25 +103,41 @@ body {
     gap: 15px;
 }
 
-/* Botones estilo UI de batalla (FIGHT/ACT/ITEM) */
-button, .btn-lang {
+.botones a:hover::before {
+    content: "* ";
+    color: black;
+}
+
+button,
+.btn-lang {
     background-color: #000000;
-    color: var(--green-bright);
-    border: 3px solid var(--green-room);
+    color: var(--tv-cyan);
+    border: 3px solid var(--tv-green);
     padding: 8px 16px;
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
     text-decoration: none;
+    box-shadow: inset 0 0 6px rgba(0, 255, 135, 0.3);
+    transition: all 0.15s;
+    display: inline-block;
 }
 
-button:hover, .btn-lang:hover {
-    color: var(--text-light);
-    border-color: var(--text-light);
-    background-color: var(--green-deep);
+.btn-lang {
+    content: "*";
+    color: black;
 }
 
-/* --- SECCIONES PRINCIPALES (CAJAS DE DIÁLOGO) --- */
+button:hover,
+.btn-lang:hover {
+    color: #000000 !important;
+    border-color: var(--yellow-deltarune);
+    background-color: var(--yellow-deltarune);
+    box-shadow: 0 0 12px var(--yellow-deltarune);
+}
+
+
+/* --- CONTENEDOR PRINCIPAL --- */
 .main {
     flex: 1;
     max-width: 900px;
@@ -102,40 +145,43 @@ button:hover, .btn-lang:hover {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 35px;
 }
 
+/* --- SECCIONES PRINCIPALES (PANTALLAS / MARCOS DE TENNA) --- */
 .seccion {
     background-color: #000000;
-    /* Caja de texto estándar con borde blanco o verde */
-    border: 4px solid var(--green-bright); 
+    border: 4px solid var(--tv-green);
     padding: 25px;
+    position: relative;
+    box-shadow: var(--glow-green);
 }
 
 .seccion h2 {
-    color: var(--green-neon);
+    color: var(--tv-cyan);
     margin-bottom: 15px;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    text-shadow: 0 0 8px var(--tv-cyan);
+    text-transform: uppercase;
 }
 
-/* Añade el asterisco clásico de los diálogos antes de cada párrafo */
 .caja-texto p::before {
     content: "* ";
-    color: var(--text-light);
 }
 
 .caja-texto p {
     font-size: 1.1rem;
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 10px;
 }
 
 .broma-css {
     color: #ff3333 !important;
     font-weight: bold;
+    text-shadow: 0 0 8px #ff0000;
 }
 
-/* --- STATS / BARRAS DE PROGRESO RPG --- */
+/* --- STATS / BARRAS DE PROGRESO (COLORES ORIGINALES CONSERVALOS) --- */
 .stats-contenedor {
     width: 100%;
 }
@@ -155,70 +201,222 @@ button:hover, .btn-lang:hover {
 .stat-item p {
     font-size: 1.1rem;
     margin-bottom: 5px;
+    color: var(--tv-cyan);
+    font-weight: bold;
 }
 
-/* Las barras del juego son planas, sin sombras ni curvas */
+.stat-item p span {
+    color: var(--yellow-deltarune);
+}
+
 .barra {
     width: 100%;
-    height: 18px;
-    background-color: #222222; /* Fondo de la barra vacía */
-    border: 2px solid var(--green-room);
+    height: 20px;
+    background-color: #222222;
+    /* Tu fondo original de la barra */
+    border: 2px solid var(--board-orange);
+    /* Borde naranja estilo piso Cap 3 */
     overflow: hidden;
+    box-shadow: inset 0 0 5px #000;
 }
 
 .relleno {
     height: 100%;
-    width: 0%; /* Animado por JS */
-    /* Transición instantánea o rápida para dar sensación retro */
-    transition: width 0.8s steps(10); 
+    width: 0%;
+    transition: width 0.8s steps(10);
 }
 
-/* Colores sólidos y llamativos para las estadísticas */
-.relleno-html { background-color: #e44d26; }
-.relleno-css { background-color: #264de4; }
-.relleno-js { background-color: #f7df1e; }
-.relleno-bootstrap { background-color: #563d7c; }
-.relleno-mysql { background-color: #00758f; }
+/* --- TUS COLORES ORIGINALES RESTAURADOS --- */
+.relleno-html {
+    background-color: #e44d26;
+}
 
-/* El degradado de Python adaptado al estilo de pixeles */
-.relleno-python { 
+.relleno-css {
+    background-color: #264de4;
+}
+
+.relleno-js {
+    background-color: #f7df1e;
+}
+
+.relleno-bootstrap {
+    background-color: #563d7c;
+}
+
+.relleno-mysql {
+    background-color: #00758f;
+}
+
+.relleno-python {
     background: linear-gradient(90deg, #3776ab 50%, #ffd43b 50%);
-    background-size: 20px 100%; /* Rompe el degradado suave para que parezca pixelado */
+    background-size: 20px 100%;
 }
 
 .nota-pie {
-    font-size: 0.9rem;
-    color: var(--green-room);
+    font-size: 0.95rem;
+    color: var(--board-orange);
     margin-top: 15px;
+    font-style: italic;
+}
+
+/* --- SECCIÓN DE PROYECTOS (ESTILO RANK REWARDS / A-RANK ARCADE) --- */
+.proyectos {
+    background-color: #000000;
+    border: 4px solid var(--board-orange);
+    padding: 25px;
+    box-shadow: var(--glow-orange);
+}
+
+.proyectos h2 {
+    color: var(--yellow-deltarune);
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px var(--yellow-deltarune);
+    margin-bottom: 10px;
+}
+
+.proyectos>p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+}
+
+.proyectos>p::before {
+    content: "* ";
+}
+
+.contenido-proyectos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjetas individuales con el rojo alfombra y verde de la sala de premios */
+.job-xp,
+.art-galery {
+    background-color: var(--card-bg);
+    border: 3px solid var(--red-carpet);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 0 10px rgba(230, 0, 57, 0.4);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.job-xp:hover,
+.art-galery:hover {
+    transform: translateY(-4px);
+    border-color: var(--tv-cyan);
+    box-shadow: 0 0 14px var(--tv-cyan);
+}
+
+.job-xp h3,
+.art-galery h3 {
+    color: var(--tv-green);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    text-shadow: 0 0 6px var(--tv-green);
+}
+
+.job-xp h3::before,
+.art-galery h3::before {
+    content: "[ ";
+    color: var(--board-orange);
+}
+
+.job-xp h3::after,
+.art-galery h3::after {
+    content: " ]";
+    color: var(--board-orange);
+}
+
+.job-xp p,
+.art-galery p {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    color: var(--text-light);
+}
+
+.job-xp h4,
+.art-galery h4 {
+    color: var(--yellow-deltarune);
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.job-xp a,
+.art-galery a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #000000;
+    background-color: var(--board-orange);
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid var(--text-light);
+    box-shadow: 2px 2px 0px #000;
+    transition: all 0.15s;
+}
+
+.job-xp a:hover {
+    background-color: var(--yellow-deltarune);
+    color: #000000;
+    box-shadow: 0 0 10px var(--yellow-deltarune);
+}
+
+.art-galery a {
+    background-color: var(--tv-cyan);
+}
+
+.art-galery a:hover {
+    background-color: var(--tv-green);
+    color: #000000;
+    box-shadow: 0 0 10px var(--tv-green);
 }
 
 /* --- FOOTER --- */
 .footer {
     background-color: #000000;
-    border: 4px solid var(--text-light);
+    border: 4px solid var(--tv-cyan);
+    box-shadow: var(--glow-tv);
     padding: 20px;
     text-align: center;
     margin-top: 40px;
 }
 
 .footer h3 {
-    color: var(--green-neon);
-    margin-bottom: 10px;
+    color: var(--board-orange);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 6px var(--board-orange);
 }
 
 .redes {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .redes a {
     color: var(--text-light);
     text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .redes a:hover {
-    color: var(--green-bright);
-    text-decoration: underline;
+    color: var(--yellow-deltarune);
+    text-shadow: 0 0 8px var(--yellow-deltarune);
+}
+
+.correo {
+    color: var(--tv-cyan);
+    font-size: 0.95rem;
 }

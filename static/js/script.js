@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Animación automática de las barras de progreso
+    // Animación de las barras de estadísticas estilo RPG
     const rellenos = document.querySelectorAll('.relleno');
     setTimeout(() => {
         rellenos.forEach(barra => {
@@ -8,26 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, 300);
 
-    // 2. Lógica del Botón de Música (Mute/Unmute con Autoplay)
+    // Audio ambiental
     const audio = document.getElementById('greenRoom');
     const botonMusica = document.querySelector('.botonMusica');
-
     if (audio) {
-        // Forzamos que la música inicie automáticamente en silencio absoluto
         audio.muted = true;
-        audio.play().catch(error => console.log("Autoplay iniciado en silencio según las reglas del navegador."));
-        
+        audio.play().catch(error => console.log("Autoplay iniciado en silencio según políticas del navegador."));
         if (botonMusica) {
-            // Como la música ya está sonando en silencio, preparamos el botón para que diga "Reproducir"
             botonMusica.textContent = "Reproducir";
-
             botonMusica.addEventListener('click', () => {
                 if (audio.muted) {
-                    // Si está en silencio, le quitamos el silencio y cambiamos el texto a Silenciar
                     audio.muted = false;
                     botonMusica.textContent = "Silenciar";
                 } else {
-                    // Si ya se escucha, lo volvemos a poner en silencio y cambiamos a Reproducir
                     audio.muted = true;
                     botonMusica.textContent = "Reproducir";
                 }
@@ -35,23 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 3. EFECTOS DE SONIDO ESTILO UNDERTALE / DELTARUNE
+    // Efectos de sonido del juego al interactuar
     const sndMove = document.getElementById('sndMove');
     const sndSelect = document.getElementById('sndSelect');
-
-    // Seleccionamos todos los botones y enlaces interactivos de la página
-    const elementosInteractivos = document.querySelectorAll('.nav a, button, .btn-lang, .redes a');
-
+    
+    // Se agregan los enlaces de proyectos a la interactividad
+    const elementosInteractivos = document.querySelectorAll('.nav a, button, .btn-lang, .redes a, .contenido-proyectos a');
+    
     elementosInteractivos.forEach(elemento => {
-        // Sonido al pasar el cursor (Hover)
         elemento.addEventListener('mouseenter', () => {
             if (sndMove) {
-                sndMove.currentTime = 0; // Reinicia el audio por si pasas rápido entre opciones
-                sndMove.play().catch(e => console.log("Audio de interfaz silenciado por el navegador."));
+                sndMove.currentTime = 0;
+                sndMove.play().catch(e => console.log("Audio silenciado por navegador."));
             }
         });
-
-        // Sonido al hacer clic (Select)
         elemento.addEventListener('click', (e) => {
             if (sndSelect) {
                 sndSelect.currentTime = 0;
