@@ -6,52 +6,30 @@
     image-rendering: pixelated;
 }
 
-
-:root {
-    --bg-green-light: #A0D588;
-    --bg-green-dark: #659591;
-    --tv-green: #00ff87;
-    --tv-cyan: #00f0ff;
-    --board-orange: #ff7722;
-    --red-carpet: #e60039;
-    --yellow-deltarune: #ffd700;
-    --text-light: #ffffff;
-    --card-bg: #091a18;
-    --glow-tv: 0 0 12px rgba(0, 240, 255, 0.6);
-    --glow-green: 0 0 12px rgba(0, 255, 135, 0.6);
-    --glow-orange: 0 0 10px rgba(255, 119, 34, 0.5);
-}
-
-
 body {
-    background-color: var(--bg-green-light);
-    color: var(--text-light);
+    background-color: #a0d588;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding: 20px;
-    background-image:
-        linear-gradient(180deg, rgba(0, 240, 255, 0.08) 0%, rgba(0, 255, 135, 0.05) 50%, rgba(255, 119, 34, 0.1) 100%);
-    background-attachment: fixed;
     animation: cambiarFondo 5s ease-in-out infinite alternate;
 }
 
 @keyframes cambiarFondo {
     0% {
-        background-color: var(--bg-green-light);
+        background-color: #a0d588;
     }
-
     100% {
-        background-color: var(--bg-green-dark);
+        background-color: #659591;
     }
 }
-
 
 /* --- HEADER --- */
 .header {
     background-color: #000000;
-    border: 4px solid var(--tv-cyan);
-    box-shadow: var(--glow-tv);
+    border: 4px solid #00f0ff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
     padding: 15px;
     margin-bottom: 30px;
 }
@@ -67,10 +45,10 @@ body {
 }
 
 .header h1 {
-    color: var(--board-orange);
+    color: #ff7722;
     font-size: 2.2rem;
     font-weight: bold;
-    text-shadow: 0 0 10px var(--board-orange);
+    text-shadow: 0 0 10px #ff7722;
     letter-spacing: 2px;
 }
 
@@ -81,7 +59,7 @@ body {
 }
 
 .nav a {
-    color: var(--text-light);
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
@@ -89,13 +67,13 @@ body {
 }
 
 .nav a:hover {
-    color: var(--yellow-deltarune);
-    text-shadow: 0 0 8px var(--yellow-deltarune);
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700;
 }
 
 .nav a:hover::before {
     content: "* ";
-    color: var(--yellow-deltarune);
+    color: #ffd700;
 }
 
 .botones {
@@ -103,16 +81,11 @@ body {
     gap: 15px;
 }
 
-.botones a:hover::before {
-    content: "* ";
-    color: black;
-}
-
 button,
 .btn-lang {
     background-color: #000000;
-    color: var(--tv-cyan);
-    border: 3px solid var(--tv-green);
+    color: #00f0ff;
+    border: 3px solid #00ff87;
     padding: 8px 16px;
     cursor: pointer;
     font-weight: bold;
@@ -123,19 +96,28 @@ button,
     display: inline-block;
 }
 
-.btn-lang {
-    content: "*";
-    color: black;
-}
-
 button:hover,
 .btn-lang:hover {
     color: #000000 !important;
-    border-color: var(--yellow-deltarune);
-    background-color: var(--yellow-deltarune);
-    box-shadow: 0 0 12px var(--yellow-deltarune);
+    border-color: #ffd700;
+    background-color: #ffd700;
+    box-shadow: 0 0 12px #ffd700;
 }
 
+/* Asterisco en negro para el botón de lenguaje en hover */
+.btn-lang:hover::before {
+    content: "* ";
+    color: #000000 !important;
+}
+
+/* --- ELEMENTO IFRAME --- */
+iframe {
+    display: block;
+    margin: 0 auto 30px auto;
+    max-width: 100%;
+    border: 4px solid #00f0ff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
 
 /* --- CONTENEDOR PRINCIPAL --- */
 .main {
@@ -148,20 +130,20 @@ button:hover,
     gap: 35px;
 }
 
-/* --- SECCIONES PRINCIPALES (PANTALLAS / MARCOS DE TENNA) --- */
+/* --- SECCIONES PRINCIPALES --- */
 .seccion {
     background-color: #000000;
-    border: 4px solid var(--tv-green);
+    border: 4px solid #00ff87;
     padding: 25px;
     position: relative;
-    box-shadow: var(--glow-green);
+    box-shadow: 0 0 12px rgba(0, 255, 135, 0.6);
 }
 
 .seccion h2 {
-    color: var(--tv-cyan);
+    color: #00f0ff;
     margin-bottom: 15px;
     font-size: 1.7rem;
-    text-shadow: 0 0 8px var(--tv-cyan);
+    text-shadow: 0 0 8px #00f0ff;
     text-transform: uppercase;
 }
 
@@ -181,14 +163,14 @@ button:hover,
     text-shadow: 0 0 8px #ff0000;
 }
 
-/* --- STATS / BARRAS DE PROGRESO (COLORES ORIGINALES CONSERVALOS) --- */
+/* --- STATS / BARRAS DE PROGRESO (USANDO FLEXBOX) --- */
 .stats-contenedor {
     width: 100%;
 }
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -196,28 +178,27 @@ button:hover,
     display: flex;
     flex-direction: column;
     gap: 15px;
+    flex: 1 1 280px;
 }
 
 .stat-item p {
     font-size: 1.1rem;
     margin-bottom: 5px;
-    color: var(--tv-cyan);
+    color: #00f0ff;
     font-weight: bold;
 }
 
 .stat-item p span {
-    color: var(--yellow-deltarune);
+    color: #ffd700;
 }
 
 .barra {
     width: 100%;
     height: 20px;
     background-color: #222222;
-    /* Tu fondo original de la barra */
-    border: 2px solid var(--board-orange);
-    /* Borde naranja estilo piso Cap 3 */
+    border: 2px solid #ff7722;
     overflow: hidden;
-    box-shadow: inset 0 0 5px #000;
+    box-shadow: inset 0 0 5px #000000;
 }
 
 .relleno {
@@ -226,7 +207,6 @@ button:hover,
     transition: width 0.8s steps(10);
 }
 
-/* --- TUS COLORES ORIGINALES RESTAURADOS --- */
 .relleno-html {
     background-color: #e44d26;
 }
@@ -248,53 +228,51 @@ button:hover,
 }
 
 .relleno-python {
-    background: linear-gradient(90deg, #3776ab 50%, #ffd43b 50%);
-    background-size: 20px 100%;
+    background-color: #3776ab;
 }
 
 .nota-pie {
     font-size: 0.95rem;
-    color: var(--board-orange);
+    color: #ff7722;
     margin-top: 15px;
     font-style: italic;
 }
 
-/* --- SECCIÓN DE PROYECTOS (ESTILO RANK REWARDS / A-RANK ARCADE) --- */
+/* --- SECCIÓN DE PROYECTOS (USANDO FLEXBOX) --- */
 .proyectos {
     background-color: #000000;
-    border: 4px solid var(--board-orange);
+    border: 4px solid #ff7722;
     padding: 25px;
-    box-shadow: var(--glow-orange);
+    box-shadow: 0 0 10px rgba(255, 119, 34, 0.5);
 }
 
 .proyectos h2 {
-    color: var(--yellow-deltarune);
+    color: #ffd700;
     font-size: 1.8rem;
-    text-shadow: 0 0 10px var(--yellow-deltarune);
+    text-shadow: 0 0 10px #ffd700;
     margin-bottom: 10px;
 }
 
-.proyectos>p {
-    color: var(--text-light);
+.proyectos > p {
+    color: #ffffff;
     font-size: 1.05rem;
     margin-bottom: 25px;
 }
 
-.proyectos>p::before {
+.proyectos > p::before {
     content: "* ";
 }
 
 .contenido-proyectos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 25px;
 }
 
-/* Tarjetas individuales con el rojo alfombra y verde de la sala de premios */
 .job-xp,
 .art-galery {
-    background-color: var(--card-bg);
-    border: 3px solid var(--red-carpet);
+    background-color: #091a18;
+    border: 3px solid #e60039;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -302,33 +280,34 @@ button:hover,
     position: relative;
     box-shadow: 0 0 10px rgba(230, 0, 57, 0.4);
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    flex: 1 1 300px;
 }
 
 .job-xp:hover,
 .art-galery:hover {
     transform: translateY(-4px);
-    border-color: var(--tv-cyan);
-    box-shadow: 0 0 14px var(--tv-cyan);
+    border-color: #00f0ff;
+    box-shadow: 0 0 14px #00f0ff;
 }
 
 .job-xp h3,
 .art-galery h3 {
-    color: var(--tv-green);
+    color: #00ff87;
     font-size: 1.4rem;
     margin-bottom: 12px;
-    text-shadow: 0 0 6px var(--tv-green);
+    text-shadow: 0 0 6px #00ff87;
 }
 
 .job-xp h3::before,
 .art-galery h3::before {
     content: "[ ";
-    color: var(--board-orange);
+    color: #ff7722;
 }
 
 .job-xp h3::after,
 .art-galery h3::after {
     content: " ]";
-    color: var(--board-orange);
+    color: #ff7722;
 }
 
 .job-xp p,
@@ -336,12 +315,12 @@ button:hover,
     font-size: 0.98rem;
     line-height: 1.5;
     margin-bottom: 12px;
-    color: var(--text-light);
+    color: #ffffff;
 }
 
 .job-xp h4,
 .art-galery h4 {
-    color: var(--yellow-deltarune);
+    color: #ffd700;
     font-size: 1rem;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -353,47 +332,47 @@ button:hover,
     display: inline-block;
     margin-top: 15px;
     color: #000000;
-    background-color: var(--board-orange);
+    background-color: #ff7722;
     padding: 8px 12px;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-    border: 2px solid var(--text-light);
-    box-shadow: 2px 2px 0px #000;
+    border: 2px solid #ffffff;
+    box-shadow: 2px 2px 0px #000000;
     transition: all 0.15s;
 }
 
 .job-xp a:hover {
-    background-color: var(--yellow-deltarune);
+    background-color: #ffd700;
     color: #000000;
-    box-shadow: 0 0 10px var(--yellow-deltarune);
+    box-shadow: 0 0 10px #ffd700;
 }
 
 .art-galery a {
-    background-color: var(--tv-cyan);
+    background-color: #00f0ff;
 }
 
 .art-galery a:hover {
-    background-color: var(--tv-green);
+    background-color: #00ff87;
     color: #000000;
-    box-shadow: 0 0 10px var(--tv-green);
+    box-shadow: 0 0 10px #00ff87;
 }
 
 /* --- FOOTER --- */
 .footer {
     background-color: #000000;
-    border: 4px solid var(--tv-cyan);
-    box-shadow: var(--glow-tv);
+    border: 4px solid #00f0ff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
     padding: 20px;
     text-align: center;
     margin-top: 40px;
 }
 
 .footer h3 {
-    color: var(--board-orange);
+    color: #ff7722;
     font-size: 1.4rem;
     margin-bottom: 15px;
-    text-shadow: 0 0 6px var(--board-orange);
+    text-shadow: 0 0 6px #ff7722;
 }
 
 .redes {
@@ -405,18 +384,25 @@ button:hover,
 }
 
 .redes a {
-    color: var(--text-light);
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
 }
 
 .redes a:hover {
-    color: var(--yellow-deltarune);
-    text-shadow: 0 0 8px var(--yellow-deltarune);
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700;
 }
 
 .correo {
-    color: var(--tv-cyan);
+    color: #00f0ff;
     font-size: 0.95rem;
+}
+
+/* --- IMAGEN DEL FOOTER --- */
+.footer img {
+    margin-top: 15px;
+    max-width: 120px;
+    height: auto;
 }
