@@ -56,6 +56,7 @@ body {
     display: flex;
     align-items: center;
     gap: 25px;
+    flex-wrap: wrap;
 }
 
 .nav a {
@@ -64,6 +65,14 @@ body {
     font-weight: bold;
     font-size: 1.1rem;
     transition: color 0.1s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav a::before {
+    content: "* ";
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 
 .nav a:hover {
@@ -72,7 +81,7 @@ body {
 }
 
 .nav a:hover::before {
-    content: "* ";
+    opacity: 1;
     color: #ffd700;
 }
 
@@ -93,7 +102,14 @@ button,
     text-decoration: none;
     box-shadow: inset 0 0 6px rgba(0, 255, 135, 0.3);
     transition: all 0.15s;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-lang::before {
+    content: "* ";
+    opacity: 0;
+    transition: opacity 0.15s;
 }
 
 button:hover,
@@ -104,13 +120,12 @@ button:hover,
     box-shadow: 0 0 12px #ffd700;
 }
 
-/* Asterisco en negro para el botón de lenguaje en hover */
 .btn-lang:hover::before {
-    content: "* ";
+    opacity: 1;
     color: #000000 !important;
 }
 
-/* --- ELEMENTO IFRAME --- */
+/* --- IFRAME (REPRODUCTOR DE YOUTUBE) --- */
 iframe {
     display: block;
     margin: 0 auto 30px auto;
@@ -147,23 +162,36 @@ iframe {
     text-transform: uppercase;
 }
 
-.caja-texto p::before {
-    content: "* ";
+/* --- QUIÉN SOY (CAJA DE TEXTO E IMAGEN DE PERFIL) --- */
+.caja-texto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
 }
 
 .caja-texto p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 10px;
+    flex: 1 1 300px;
 }
 
-.broma-css {
-    color: #ff3333 !important;
-    font-weight: bold;
-    text-shadow: 0 0 8px #ff0000;
+.caja-texto p::before {
+    content: "* ";
+    color: inherit; /* Hereda el blanco del párrafo */
 }
 
-/* --- STATS / BARRAS DE PROGRESO (USANDO FLEXBOX) --- */
+.caja-texto img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 3px solid #ff7722;
+    box-shadow: 0 0 10px rgba(255, 119, 34, 0.7);
+    margin: 0 auto;
+}
+
+/* --- STATS / BARRAS DE PROGRESO --- */
 .stats-contenedor {
     width: 100%;
 }
@@ -203,32 +231,37 @@ iframe {
 
 .relleno {
     height: 100%;
-    width: 0%;
     transition: width 0.8s steps(10);
 }
 
 .relleno-html {
     background-color: #e44d26;
+    width: 79%;
 }
 
 .relleno-css {
     background-color: #264de4;
+    width: 39%;
 }
 
 .relleno-js {
     background-color: #f7df1e;
+    width: 83%;
 }
 
 .relleno-bootstrap {
     background-color: #563d7c;
+    width: 50%;
 }
 
 .relleno-mysql {
     background-color: #00758f;
+    width: 43%;
 }
 
 .relleno-python {
     background-color: #3776ab;
+    width: 15%;
 }
 
 .nota-pie {
@@ -238,7 +271,7 @@ iframe {
     font-style: italic;
 }
 
-/* --- SECCIÓN DE PROYECTOS (USANDO FLEXBOX) --- */
+/* --- SECCIÓN DE PROYECTOS --- */
 .proyectos {
     background-color: #000000;
     border: 4px solid #ff7722;
@@ -261,6 +294,7 @@ iframe {
 
 .proyectos > p::before {
     content: "* ";
+    color: inherit;
 }
 
 .contenido-proyectos {
@@ -314,8 +348,18 @@ iframe {
 .art-galery p {
     font-size: 0.98rem;
     line-height: 1.5;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: #ffffff;
+}
+
+.job-xp img,
+.art-galery img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border: 2px solid #00f0ff;
+    margin: 15px 0;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
 .job-xp h4,
@@ -400,7 +444,6 @@ iframe {
     font-size: 0.95rem;
 }
 
-/* --- IMAGEN DEL FOOTER --- */
 .footer img {
     margin-top: 15px;
     max-width: 120px;
