@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const sndMove = document.getElementById('sndMove');
     const sndSelect = document.getElementById('sndSelect');
     
-    // Se agregan los enlaces de proyectos a la interactividad
+    // Se agregan los enlaces de proyectos a los elementos interactivos
     const elementosInteractivos = document.querySelectorAll('.nav a, button, .btn-lang, .redes a, .contenido-proyectos a');
     
     elementosInteractivos.forEach(elemento => {
         elemento.addEventListener('mouseenter', () => {
             if (sndMove) {
                 sndMove.currentTime = 0;
-                sndMove.play().catch(e => console.log("Audio silenciado por navegador."));
+                sndMove.play().catch(e => console.log("Audio silenciado por el navegador."));
             }
         });
         elemento.addEventListener('click', (e) => {
